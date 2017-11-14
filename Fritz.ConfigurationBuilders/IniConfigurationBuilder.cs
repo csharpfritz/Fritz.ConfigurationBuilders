@@ -19,6 +19,7 @@ namespace Fritz.ConfigurationBuilders
 
 		public string Location { get; private set; }
 		public IniData IniData { get; private set; }
+		public KeyValueMode Mode { get; private set; } = KeyValueMode.Strict;
 
 		public override void Initialize(string name, NameValueCollection config)
 		{
