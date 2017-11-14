@@ -66,6 +66,45 @@ namespace Test.Ini
 
 		}
 
+		[Test]
+		public void WhenSpecifiedShouldSetKeyValueMode()
+		{
+
+			// Arrange
+			var sut = new IniConfigurationBuilder();
+			var coll = new NameValueCollection
+			{
+				{ IniConfigurationBuilder.locationTag, fakeFileLocation },
+				{ IniConfigurationBuilder.modeTag, KeyValueMode.Greedy.ToString() }
+			};
+
+			// Act
+			sut.Initialize("test", coll);
+
+			// Assert
+			Assert.AreEqual(KeyValueMode.Greedy, sut.Mode, "Did not capture the specified mode of the ConfigurationBuilder");
+
+		}
+
+		[Test]
+		public void WhenNotSpecifiedShouldSetKeyValueModeToStrict()
+		{
+
+			// Arrange
+			var sut = new IniConfigurationBuilder();
+			var coll = new NameValueCollection
+			{
+				{ IniConfigurationBuilder.locationTag, fakeFileLocation }
+			};
+
+			// Act
+			sut.Initialize("test", coll);
+
+			// Assert
+			Assert.AreEqual(KeyValueMode.Strict, sut.Mode, "Did not set the default mode of the ConfigurationBuilder");
+
+		}
+
 	}
 
 }

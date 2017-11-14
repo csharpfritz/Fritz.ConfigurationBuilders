@@ -11,17 +11,12 @@ using System.Xml;
 namespace Test.Ini
 {
 
-	[TestFixture]
-	public class Simple : BaseIniFixture
+
+	public class Greedy : BaseIniFixture
 	{
 
-		protected override string GetIniFilename()
-		{
-			return "simple.ini";
-		}
-
 		[Test]
-		public void AppliesSetting()
+		public void ShouldAddMissingAppSettings()
 		{
 
 			// Arrange
@@ -29,7 +24,8 @@ namespace Test.Ini
 			appSettings.LoadXml(@"<appSettings><add key=""setting"" value=""inlineValue"" /></appSettings>");
 			var coll = new NameValueCollection()
 			{
-				{IniConfigurationBuilder.locationTag, iniFileLocation}
+				{IniConfigurationBuilder.locationTag, iniFileLocation},
+				{IniConfigurationBuilder.modeTag, KeyValueMode.Greedy.ToString() }
 			};
 			var sut = new IniConfigurationBuilder();
 			sut.Initialize("test", coll);
@@ -38,11 +34,14 @@ namespace Test.Ini
 			var outNode = sut.ProcessRawXml(appSettings.SelectSingleNode("appSettings"));
 
 			// Assert
-			Assert.AreEqual("value", outNode.SelectSingleNode("//add[@key='setting']").Attributes["value"].Value, "Did not set the value properly on the value");
+			Assert.AreNotEqual(1, outNode.SelectNodes(@"//add").Count, "Did not add more add nodes to appSettings");
 
-		} 
+		}
 
-
+		protected override string GetIniFilename()
+		{
+			return "manySettings.ini";
+		}
 	}
 
 }

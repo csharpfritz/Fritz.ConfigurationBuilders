@@ -9,13 +9,16 @@ namespace Test.Ini
 
 		protected string iniFileLocation { get; private set; }
 
+		protected abstract string GetIniFilename();
+
 		[OneTimeSetUp]
 		public void Setup()
 		{
 
 			iniFileLocation = Path.GetTempFileName();
+			var thisIniFile = GetIniFilename();
 
-			using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("Test.Ini.simple.ini"))
+			using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream($"Test.Ini.{thisIniFile}"))
 			{
 				using (var file = new FileStream(iniFileLocation, FileMode.Create, FileAccess.Write))
 				{

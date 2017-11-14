@@ -16,6 +16,7 @@ namespace Fritz.ConfigurationBuilders
 	{
 
 		public const string locationTag = "location";
+		public const string modeTag = "mode";
 
 		public string Location { get; private set; }
 		public IniData IniData { get; private set; }
@@ -32,6 +33,11 @@ namespace Fritz.ConfigurationBuilders
 			}
 			this.Location = config[locationTag];
 
+			if (Enum.TryParse<KeyValueMode>(config[modeTag], out var result))
+			{
+				this.Mode = result;
+			}
+
 			var parser = new FileIniDataParser();
 			this.IniData = parser.ReadFile(this.Location);
 
@@ -42,6 +48,45 @@ namespace Fritz.ConfigurationBuilders
 
 			var outNode = rawXml;
 
+			switch (Mode)
+			{
+				case KeyValueMode.Strict:
+					ReplaceStrict(rawXml);
+					break;
+				case KeyValueMode.Greedy:
+					ReplaceGreedy(rawXml);
+					break;
+			}
+
+			return outNode;
+
+		}
+
+		private void ReplaceGreedy(XmlNode rawXml)
+		{
+
+			foreach (var item in IniData.Global)
+			{
+
+				if (rawXml.SelectSingleNode($"add[@key='{item.KeyName}']") != null)
+				{
+					rawXml.SelectSingleNode($"add[@key='{item.KeyName}']").Value = item.Value;
+				} else
+				{
+					var newElement = rawXml.OwnerDocument.CreateElement("add");
+					newElement.Attributes.SetNamedItem(rawXml.OwnerDocument.CreateAttribute("key"));
+					newElement.Attributes.SetNamedItem(rawXml.OwnerDocument.CreateAttribute("value"));
+					newElement.Attributes["key"].Value = item.KeyName;
+					newElement.Attributes["value"].Value = item.Value;
+					rawXml.AppendChild(newElement);
+				}
+
+			}
+
+		}
+
+		private void ReplaceStrict(XmlNode rawXml)
+		{
 			var keys = rawXml.SelectNodes(@"add[@key]");
 			for (var i = 0; i < keys.Count; i++)
 			{
@@ -54,13 +99,7 @@ namespace Fritz.ConfigurationBuilders
 				}
 
 			}
-
-			return outNode;
-
 		}
-
-
-
 	}
 
 }
