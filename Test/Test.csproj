@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ini\BaseIniFixture.cs" />
     <Compile Include="Ini\Initialize.cs" />
     <Compile Include="Ini\Simple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

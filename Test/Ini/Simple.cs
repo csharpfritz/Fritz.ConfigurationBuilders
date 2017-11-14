@@ -3,9 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -14,37 +12,8 @@ namespace Test.Ini
 {
 
 	[TestFixture]
-	public class Simple
+	public class Simple : BaseIniFixture
 	{
-
-		private static readonly string iniFileLocation;
-
-		static Simple()
-		{
-
-			iniFileLocation = Path.GetTempFileName();
-
-		}
-
-		[OneTimeSetUp]
-		public void Setup()
-		{
-			
-			using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream("Test.Ini.simple.ini"))
-			{
-				using (var file = new FileStream(iniFileLocation, FileMode.Create, FileAccess.Write))
-				{
-					resource.CopyTo(file);
-				}
-			}
-
-		}
-
-		[OneTimeTearDown]
-		public void Teardown()
-		{
-			File.Delete(iniFileLocation);
-		}
 
 		[Test]
 		public void AppliesSetting()
