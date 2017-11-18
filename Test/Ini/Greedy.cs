@@ -1,4 +1,5 @@
 ﻿using Fritz.ConfigurationBuilders;
+using Microsoft.Configuration.ConfigurationBuilders;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,14 @@ namespace Test.Ini
 			var outNode = sut.ProcessRawXml(appSettings.SelectSingleNode("appSettings"));
 
 			// Assert
-			Assert.AreNotEqual(1, outNode.SelectNodes(@"//add").Count, "Did not add more add nodes to appSettings");
+			Assert.AreEqual(4, outNode.SelectNodes(@"//add").Count, "Did not add more add nodes to appSettings");
+
+			// Check for the other three settings
+			for (int i=1;i<4;i++)
+			{
+				Assert.IsNotNull(outNode.SelectSingleNode($@"//add[@key='setting{i}']"), $"Missing setting{i}");
+			}
+
 
 		}
 
