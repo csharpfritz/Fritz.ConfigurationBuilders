@@ -11,6 +11,10 @@ namespace Test.Ini
 
 		protected abstract string GetIniFilename();
 
+		protected virtual void OneTimeSetup() { }
+		protected virtual void OneTimeTeardown() { }
+
+
 		[OneTimeSetUp]
 		public void Setup()
 		{
@@ -26,12 +30,17 @@ namespace Test.Ini
 				}
 			}
 
+			OneTimeSetup();
+
 		}
 
 		[OneTimeTearDown]
 		public void Teardown()
 		{
 			File.Delete(iniFileLocation);
+
+			OneTimeTeardown();
+
 		}
 
 	}

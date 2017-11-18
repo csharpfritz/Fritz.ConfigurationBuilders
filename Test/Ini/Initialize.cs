@@ -1,4 +1,5 @@
 ﻿using Fritz.ConfigurationBuilders;
+using Microsoft.Configuration.ConfigurationBuilders;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
