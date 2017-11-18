@@ -2,6 +2,7 @@
 using Microsoft.Configuration.ConfigurationBuilders;
 using NUnit.Framework;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Xml;
 
 namespace Test.Ini
@@ -17,16 +18,17 @@ namespace Test.Ini
 		protected override void OneTimeSetup()
 		{
 
-			AppSettings = new XmlDocument();
-			AppSettings.LoadXml(@"<appSettings><add key=""setting"" value=""inlineValue"" /></appSettings>");
+			//AppSettings = new XmlDocument();
+			//AppSettings.LoadXml(@"<appSettings><add key=""setting"" value=""inlineValue"" /></appSettings>");
 
-			ConnectionStrings = new XmlDocument();
-			ConnectionStrings.LoadXml(@"<connectionStrings></connectionStrings>");
+			//ConnectionStrings = new XmlDocument();
+			//ConnectionStrings.LoadXml(@"<connectionStrings></connectionStrings>");
 
 			Settings = new NameValueCollection()
 			{
 				{IniConfigurationBuilder.locationTag, iniFileLocation},
-				{IniConfigurationBuilder.modeTag, KeyValueMode.Greedy.ToString() }
+				{IniConfigurationBuilder.modeTag, KeyValueMode.Greedy.ToString() },
+				{IniConfigurationBuilder.sectionTag, "appSettings" }
 			};
 
 		}
@@ -37,22 +39,15 @@ namespace Test.Ini
 		{
 
 			// Arrange
+			var appSettings = new AppSettingsSection();
 			var sut = new IniConfigurationBuilder();
 			sut.Initialize("test", Settings);
 
 			// Act
-			var outNode = sut.ProcessRawXml(AppSettings.SelectSingleNode("appSettings"));
+			sut.ProcessConfigurationSection(appSettings);
 
 			// Assert
-			Assert.AreEqual(5, outNode.SelectNodes(@"//add").Count, "Did not add more add nodes to appSettings");
-
-			// Check for the other three settings
-			Assert.IsNotNull(outNode.SelectSingleNode($@"//add[@key='setting2']"), $"Missing setting2");
-			for (int i = 1; i < 4; i++)
-			{
-				Assert.IsNotNull(outNode.SelectSingleNode($@"//add[@key='appsetting{i}']"), $"Missing appsetting{i}");
-			}
-
+			Assert.AreEqual(3, appSettings.Settings.Count, "Did not add more add nodes to appSettings");
 
 		}
 
@@ -61,21 +56,15 @@ namespace Test.Ini
 		{
 
 			// Arrange
+			var connStrings = new ConnectionStringsSection();
 			var sut = new IniConfigurationBuilder();
-			sut.Initialize("test", Settings);
+			sut.Initialize("test", Settings); 
 
 			// Act
-			var outNode = sut.ProcessRawXml(AppSettings.SelectSingleNode("appSettings"));
+			sut.ProcessConfigurationSection(connStrings);
 
-			// Assert
-			Assert.AreEqual(5, outNode.SelectNodes(@"//add").Count, "Did not add more add nodes to appSettings");
-
-			// Check for the other three settings
-			Assert.IsNotNull(outNode.SelectSingleNode($@"//add[@key='setting2']"), $"Missing setting2");
-			for (int i = 1; i < 4; i++)
-			{
-				Assert.IsNotNull(outNode.SelectSingleNode($@"//add[@key='appsetting{i}']"), $"Missing appsetting{i}");
-			}
+			// Assert  
+			Assert.AreEqual(0, connStrings.ConnectionStrings.Count, "Added connectionstring when not directed to");
 
 
 		}

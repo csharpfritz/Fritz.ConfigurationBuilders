@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,7 @@ namespace Test.Ini
 		{
 
 			// Arrange
-			var appSettings = new XmlDocument();
-			appSettings.LoadXml(@"<appSettings><add key=""setting"" value=""inlineValue"" /></appSettings>");
+			var appSettings = new AppSettingsSection();
 			var coll = new NameValueCollection()
 			{
 				{IniConfigurationBuilder.locationTag, iniFileLocation},
@@ -32,15 +32,15 @@ namespace Test.Ini
 			sut.Initialize("test", coll);
 
 			// Act
-			var outNode = sut.ProcessRawXml(appSettings.SelectSingleNode("appSettings"));
+			sut.ProcessConfigurationSection(appSettings);
 
 			// Assert
-			Assert.AreEqual(4, outNode.SelectNodes(@"//add").Count, "Did not add more add nodes to appSettings");
+			Assert.AreEqual(3, appSettings.Settings.Count, "Did not add more add nodes to appSettings");
 
 			// Check for the other three settings
 			for (int i=1;i<4;i++)
 			{
-				Assert.IsNotNull(outNode.SelectSingleNode($@"//add[@key='setting{i}']"), $"Missing setting{i}");
+				Assert.IsNotNull(appSettings.Settings[$"setting{i}"], $"Missing setting{i}");
 			}
 
 
