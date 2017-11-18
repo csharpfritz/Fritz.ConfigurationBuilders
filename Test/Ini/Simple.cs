@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,8 @@ namespace Test.Ini
 		{
 
 			// Arrange
-			var appSettings = new XmlDocument();
-			appSettings.LoadXml(@"<appSettings><add key=""setting"" value=""inlineValue"" /></appSettings>");
+			var appSettings = new AppSettingsSection();
+			appSettings.Settings.Add("setting", "inlineValue");
 			var coll = new NameValueCollection()
 			{
 				{IniConfigurationBuilder.locationTag, iniFileLocation}
@@ -35,12 +36,35 @@ namespace Test.Ini
 			sut.Initialize("test", coll);
 
 			// Act
-			var outNode = sut.ProcessRawXml(appSettings.SelectSingleNode("appSettings"));
+			sut.ProcessConfigurationSection(appSettings);
 
 			// Assert
-			Assert.AreEqual("value", outNode.SelectSingleNode("//add[@key='setting']").Attributes["value"].Value, "Did not set the value properly on the value");
+			Assert.AreEqual("CorrectTestResult", appSettings.Settings["setting"].Value, "Did not set the value properly on the value");
 
-		} 
+		}
+
+
+		[Test]
+		public void DoesNotApplySettingIfNoSettingFound()
+		{
+
+			// Arrange
+			var appSettings = new AppSettingsSection();
+			appSettings.Settings.Add("NotFoundSetting", "inlineValue");
+			var coll = new NameValueCollection()
+			{
+				{IniConfigurationBuilder.locationTag, iniFileLocation}
+			};
+			var sut = new IniConfigurationBuilder();
+			sut.Initialize("test", coll);
+
+			// Act
+			sut.ProcessConfigurationSection(appSettings);
+
+			// Assert
+			Assert.AreEqual("inlineValue", appSettings.Settings["NotFoundSetting"].Value, "Changed the value when it shouldn't have");
+
+		}
 
 
 	}

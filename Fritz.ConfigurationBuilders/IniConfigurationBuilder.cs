@@ -13,13 +13,17 @@ using Microsoft.Configuration.ConfigurationBuilders;
 namespace Fritz.ConfigurationBuilders
 {
 
-	public class IniConfigurationBuilder : Microsoft.Configuration.ConfigurationBuilders.KeyValueConfigBuilder
+	public class IniConfigurationBuilder : KeyValueConfigBuilder
 	{
 
 		public const string locationTag = "location";
+		public const string sectionTag = "inisection";
 
 		public string Location { get; private set; }
 		public IniData IniData { get; private set; }
+
+		public string IniSection { get; private set; } = "(global)";
+
 
 		public override void Initialize(string name, NameValueCollection config)
 		{
@@ -30,40 +34,44 @@ namespace Fritz.ConfigurationBuilders
 			{
 				throw new ConfigurationErrorsException($"Missing {locationTag} attribute when initializing ConfigurationBuilder {name}");
 			}
-			this.Location = config[locationTag];
+			this.Location = config[locationTag]; 
+
+			if (config[sectionTag] != null)
+			{
+				this.IniSection = config[sectionTag];
+			}
 
 			var parser = new FileIniDataParser();
 			this.IniData = parser.ReadFile(this.Location);
 
 		}
 
-		public override XmlNode ProcessRawXml(XmlNode rawXml)
-		{
-
-			var outNode = rawXml;
-
-			switch (Mode)
-			{
-				case KeyValueMode.Strict:
-					ReplaceStrict(rawXml);
-					break;
-				case KeyValueMode.Greedy:
-					ReplaceGreedy(rawXml);
-					break;
-			}
-
-			return outNode;
-
-		}
-
 		public override ICollection<KeyValuePair<string, string>> GetAllValues(string prefix)
 		{
-			throw new NotImplementedException();
+
+			var outList = new Dictionary<string, string>();
+
+			var sectionToSearch = IniSection == "(global)" ? IniData.Global : IniData.Sections[IniSection];
+			
+			foreach (var item in sectionToSearch)
+			{
+				outList.Add(item.KeyName, item.Value);
+			}
+
+			return outList;
+
+
 		}
 
 		public override string GetValue(string key)
 		{
-			throw new NotImplementedException();
+			
+			if (!String.IsNullOrEmpty(IniData.Global[key])) {
+				return IniData.Global[key];
+			}
+
+			return null;
+
 		}
 
 
