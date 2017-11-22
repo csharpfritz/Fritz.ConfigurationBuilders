@@ -1,4 +1,5 @@
 ﻿using Fritz.ConfigurationBuilders;
+using Microsoft.Configuration.ConfigurationBuilders;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,45 @@ namespace Test.Ini
 			// Assert
 			Assert.AreEqual("test", sut.Name, "Did not capture the name of the ConfigurationBuilder");
 			Assert.AreEqual(fakeFileLocation, sut.Location, "Did not capture the ini file location");
+
+		}
+
+		[Test]
+		public void WhenSpecifiedShouldSetKeyValueMode()
+		{
+
+			// Arrange
+			var sut = new IniConfigurationBuilder();
+			var coll = new NameValueCollection
+			{
+				{ IniConfigurationBuilder.locationTag, fakeFileLocation },
+				{ IniConfigurationBuilder.modeTag, KeyValueMode.Greedy.ToString() }
+			};
+
+			// Act
+			sut.Initialize("test", coll);
+
+			// Assert
+			Assert.AreEqual(KeyValueMode.Greedy, sut.Mode, "Did not capture the specified mode of the ConfigurationBuilder");
+
+		}
+
+		[Test]
+		public void WhenNotSpecifiedShouldSetKeyValueModeToStrict()
+		{
+
+			// Arrange
+			var sut = new IniConfigurationBuilder();
+			var coll = new NameValueCollection
+			{
+				{ IniConfigurationBuilder.locationTag, fakeFileLocation }
+			};
+
+			// Act
+			sut.Initialize("test", coll);
+
+			// Assert
+			Assert.AreEqual(KeyValueMode.Strict, sut.Mode, "Did not set the default mode of the ConfigurationBuilder");
 
 		}
 
