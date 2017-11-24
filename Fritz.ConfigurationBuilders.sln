@@ -16,6 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{603748D7-D628-44EF-BCAE-C2949807B119}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{B9E81DC5-9ADD-4918-9CC7-4B07D9795C7E}"
+	ProjectSection(SolutionItems) = preProject
+		Fritz.ConfigurationBuilders.nuspec = Fritz.ConfigurationBuilders.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
