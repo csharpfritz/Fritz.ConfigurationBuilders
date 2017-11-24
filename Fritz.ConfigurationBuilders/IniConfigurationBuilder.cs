@@ -18,11 +18,12 @@ namespace Fritz.ConfigurationBuilders
 
 		public const string locationTag = "location";
 		public const string sectionTag = "inisection";
+		private const string GlobalSection = "(global)";
 
 		public string Location { get; private set; }
 		public IniData IniData { get; private set; }
 
-		public string IniSection { get; private set; } = "(global)";
+		public string IniSection { get; private set; } = GlobalSection;
 
 
 		public override void Initialize(string name, NameValueCollection config)
@@ -51,7 +52,7 @@ namespace Fritz.ConfigurationBuilders
 
 			var outList = new Dictionary<string, string>();
 
-			var sectionToSearch = IniSection == "(global)" ? IniData.Global : IniData.Sections[IniSection];
+			var sectionToSearch = IniSection == GlobalSection ? IniData.Global : IniData.Sections[IniSection];
 			
 			foreach (var item in sectionToSearch)
 			{
@@ -65,9 +66,18 @@ namespace Fritz.ConfigurationBuilders
 
 		public override string GetValue(string key)
 		{
-			
+
 			if (!String.IsNullOrEmpty(IniData.Global[key])) {
 				return IniData.Global[key];
+			}
+
+			var keySections = key.Split('_');
+			var baseKey = keySections.Length > 1 ? keySections[1] : key;
+			var section = keySections.Length > 1 ? keySections[0] : key;
+
+			if (keySections.Length > 1 && !string.IsNullOrEmpty(IniData.Sections[section][baseKey]))
+			{
+				return IniData.Sections[section][baseKey];
 			}
 
 			return null;
