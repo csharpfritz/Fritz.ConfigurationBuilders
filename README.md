@@ -1,5 +1,9 @@
 # Fritz.ConfigurationBuilders
-A collection of simple but useful configurationbuilders for .NET 4.7.1 and later
+A collection of simple but useful configurationbuilders for .NET 4.7.1 and later.  You can install these features from [NuGet](https://www.nuget.org/packages/Fritz.ConfigurationBuilders/0.2.0-preview) by executing:
+
+`Install-Package Fritz.ConfigurationBuilders`
+
+Big thanks to AppVeyor for building our open source project:
 
 Big thanks to AppVeyor for building our open source project:
 
