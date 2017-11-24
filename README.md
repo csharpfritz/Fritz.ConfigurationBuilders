@@ -48,4 +48,11 @@ The top-level configBuilders element is the same tag-name as the section name fr
 
 The add element requires `name` and `type` attributes.  The `name` attribute can be set to any value you would like and will be referenced using this `name` later in this configuration file.  The `type` attribute value is the fully qualified name of the ConfigurationBuilder that you wish to use.  In this case, we are referencing the `IniConfigurationBuilder` by using the full namespace for that class, followed by the assembly name the class resides in.
 
-Different ConfigurationBuilders have different attribute requirements in order to use them.  In this case, the `location` attribute is required in order to use the `IniConfigurationBuilder`.
+Different ConfigurationBuilders have different attribute requirements in order to use them.  In this case, the `location` attribute is required in order to use the `IniConfigurationBuilder`.  More information about how to use each of the ConfigurationBuilders is available on the [Wiki](https://github.com/csharpfritz/Fritz.ConfigurationBuilders/wiki)
+
+To load configuration into a section of your web.config or app.config file, you simply add an attribute to that section that indicates which ConfigurationBuilders to use.
+
+```xml
+<appSettings configBuilders="Ini">
+</appSettings>
+```
