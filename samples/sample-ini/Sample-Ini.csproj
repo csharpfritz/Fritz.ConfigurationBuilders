@@ -62,7 +62,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fritz.ConfigurationBuilders\Fritz.ConfigurationBuilders.csproj">
+    <ProjectReference Include="..\..\Fritz.ConfigurationBuilders\Fritz.ConfigurationBuilders.csproj">
       <Project>{8d521abc-f019-4b36-99a8-3e2c431a5f6e}</Project>
       <Name>Fritz.ConfigurationBuilders</Name>
     </ProjectReference>

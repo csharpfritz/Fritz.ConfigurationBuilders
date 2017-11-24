@@ -7,19 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fritz.ConfigurationBuilders
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{B8AC4719-F65A-4AF6-ABFB-F625DC34B4DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample-Ini", "IntegrationTest\Sample-Ini.csproj", "{235109B9-A8AE-4830-BC56-ECDE7F925DC2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{B9E81DC5-9ADD-4918-9CC7-4B07D9795C7E}"
 	ProjectSection(SolutionItems) = preProject
 		Fritz.ConfigurationBuilders.nuspec = Fritz.ConfigurationBuilders.nuspec
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{603748D7-D628-44EF-BCAE-C2949807B119}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{B9E81DC5-9ADD-4918-9CC7-4B07D9795C7E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{114E81D3-EC81-415F-AFFA-65B7472C5F34}"
 	ProjectSection(SolutionItems) = preProject
 		Fritz.ConfigurationBuilders.nuspec = Fritz.ConfigurationBuilders.nuspec
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{FC2B849C-98AC-41DF-B5B7-47900203C0B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample-Ini", "samples\sample-ini\Sample-Ini.csproj", "{235109B9-A8AE-4830-BC56-ECDE7F925DC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,7 +44,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{235109B9-A8AE-4830-BC56-ECDE7F925DC2} = {603748D7-D628-44EF-BCAE-C2949807B119}
+		{235109B9-A8AE-4830-BC56-ECDE7F925DC2} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1AF6F2D-5DC7-4F40-97DA-6474E5E85E3A}
