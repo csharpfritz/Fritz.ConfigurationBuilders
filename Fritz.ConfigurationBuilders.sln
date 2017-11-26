@@ -12,14 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		Fritz.ConfigurationBuilders.nuspec = Fritz.ConfigurationBuilders.nuspec
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{114E81D3-EC81-415F-AFFA-65B7472C5F34}"
-	ProjectSection(SolutionItems) = preProject
-		Fritz.ConfigurationBuilders.nuspec = Fritz.ConfigurationBuilders.nuspec
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{FC2B849C-98AC-41DF-B5B7-47900203C0B8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample-Ini", "samples\sample-ini\Sample-Ini.csproj", "{235109B9-A8AE-4830-BC56-ECDE7F925DC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample-Ini", "samples\sample-ini\Sample-Ini.csproj", "{235109B9-A8AE-4830-BC56-ECDE7F925DC2}"
 EndProject
