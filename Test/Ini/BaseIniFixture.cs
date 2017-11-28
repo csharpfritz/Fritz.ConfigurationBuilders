@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System.IO;
 using System.Reflection;
+using Test;
 
 namespace Test.Ini
 {

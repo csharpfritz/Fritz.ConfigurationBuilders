@@ -48,6 +48,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="YamlDotNet, Version=4.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.4.2.3-pre0454\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseFixture.cs" />
@@ -66,6 +69,7 @@
     <EmbeddedResource Include="Ini\manySettings.ini" />
     <EmbeddedResource Include="Ini\manyAppSettings.ini" />
     <None Include="packages.config" />
+    <EmbeddedResource Include="Yaml\simple.yml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
