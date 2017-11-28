@@ -7,6 +7,8 @@ Big thanks to AppVeyor for building our open source project:
 
 Build Status:  [![Build status](https://ci.appveyor.com/api/projects/status/3wrl63fly957bc80?svg=true)](https://ci.appveyor.com/project/csharpfritz/fritz-configurationbuilders)
 
+NuGet PreRelease: [![NuGet Pre Release](https://img.shields.io/nuget/vpre/Fritz.ConfigurationBuilders.svg)](https://www.nuget.org/packages/Fritz.ConfigurationBuilders)
+
 ## Contents
 
 This project contains ConfigurationBuilders for your application to be able to consume and work with:
