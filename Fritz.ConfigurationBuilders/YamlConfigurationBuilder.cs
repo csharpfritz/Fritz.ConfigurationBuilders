@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Collections.Specialized;
 using System.IO;
 using YamlDotNet.RepresentationModel;
+using System.Diagnostics;
 
 namespace Fritz.ConfigurationBuilders
 {
@@ -25,11 +26,11 @@ namespace Fritz.ConfigurationBuilders
 
 			this.Location = config[locationTag];
 
-			//if (config[sectionTag] != null)
-			//{
-			//	this.IniSection = config[sectionTag];
-			//}
-
+			if (string.IsNullOrEmpty(this.Location))
+			{
+				throw new ArgumentNullException(nameof(locationTag),
+					$"Missing location attribute on {nameof(YamlConfigurationBuilder)}");
+			}
 			var sr = new StreamReader(Location);
 			var parser = new YamlStream();
 			parser.Load(sr);
