@@ -20,7 +20,7 @@ namespace Test.Yaml
 			var coll = new NameValueCollection();
 			var sut = new YamlConfigurationBuilder();
 
-			// act
+			// act - assert
 			Assert.Throws<ArgumentNullException>(() => {
 					sut.Initialize("test", coll);
 				},

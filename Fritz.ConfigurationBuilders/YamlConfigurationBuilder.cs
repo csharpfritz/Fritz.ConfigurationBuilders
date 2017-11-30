@@ -29,18 +29,43 @@ namespace Fritz.ConfigurationBuilders
 			if (string.IsNullOrEmpty(this.Location))
 			{
 				throw new ArgumentNullException(nameof(locationTag),
-					$"Missing location attribute on {nameof(YamlConfigurationBuilder)}");
+					$"Missing required location attribute on {nameof(YamlConfigurationBuilder)}");
 			}
-			var sr = new StreamReader(Location);
-			var parser = new YamlStream();
-			parser.Load(sr);
-			YamlDoc = parser.Documents[0];
+
+			using (var sr = new StreamReader(Location))
+			{
+				var parser = new YamlStream();
+				parser.Load(sr);
+				YamlDoc = parser.Documents[0];
+			}
 
 		}
 
 		public override ICollection<KeyValuePair<string, string>> GetAllValues(string prefix)
 		{
-			throw new NotImplementedException();
+
+			var matchingNode = YamlDoc.RootNode.AllNodes.Skip(1).First();
+			var mappingNodes = YamlDoc.RootNode.AllNodes
+				.Where(n => n.NodeType == YamlNodeType.Mapping)
+				.Cast<YamlMappingNode>();
+
+			var outList = new List<KeyValuePair<string, string>>();
+			foreach (var entry in mappingNodes)
+			{
+
+				foreach (var mapNode in entry)
+				{
+
+					outList.Add(new KeyValuePair<string, string>(
+						((YamlScalarNode)mapNode.Key).Value,
+						(((YamlScalarNode)mapNode.Value).Value)));
+
+				}
+
+
+			}
+
+			return outList;
 		}
 
 		public override string GetValue(string key)

@@ -62,6 +62,7 @@
     <Compile Include="Ini\StrictMergedSectionNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Yaml\BaseYamlFixture.cs" />
+    <Compile Include="Yaml\Greedy.cs" />
     <Compile Include="Yaml\RequiredFields.cs" />
     <Compile Include="Yaml\Simple.cs" />
   </ItemGroup>
