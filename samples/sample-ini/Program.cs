@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Humanizer;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Sample.Ini
 
 			var keys = ConfigurationManager.AppSettings.AllKeys;
 
-			Console.WriteLine("Here are my current AppSettings:");
+			Console.WriteLine($"Here are my current {"AppSettings".ToQuantity(keys.Length)}:");
 
 			foreach (var item in keys)
 			{
