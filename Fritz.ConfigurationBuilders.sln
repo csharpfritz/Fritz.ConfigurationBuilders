@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample-Ini", "samples\sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples-rss", "samples\Samples-rss\Samples-rss.csproj", "{EFA3093B-C503-4802-A965-D63B1D6DD473}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Web", "samples\Samples.Web\Samples.Web.csproj", "{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{EFA3093B-C503-4802-A965-D63B1D6DD473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFA3093B-C503-4802-A965-D63B1D6DD473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFA3093B-C503-4802-A965-D63B1D6DD473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{235109B9-A8AE-4830-BC56-ECDE7F925DC2} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
 		{EFA3093B-C503-4802-A965-D63B1D6DD473} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
+		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1AF6F2D-5DC7-4F40-97DA-6474E5E85E3A}

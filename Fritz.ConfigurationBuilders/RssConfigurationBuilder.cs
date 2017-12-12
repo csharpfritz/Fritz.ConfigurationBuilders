@@ -47,17 +47,7 @@ namespace Fritz.ConfigurationBuilders
             return values;
         }
 
-        public override string GetValue(string key)
-        {
-            string settingsValue = null;
-
-            if (m_feedData.ContainsKey(key))
-            {
-                settingsValue = m_feedData[key];
-            }
-
-            return settingsValue;
-        }
+        public override string GetValue(string key) => m_feedData.ContainsKey(key) ? m_feedData[key] : null;
 
         private void GetSettingsFromFeed()
         {
@@ -70,8 +60,8 @@ namespace Fritz.ConfigurationBuilders
                     {
                         if (!m_feedData.ContainsKey(syndicationItem.Title.Text))
                         {
-                            if (syndicationItem.Summary == null) continue;
-                            m_feedData[syndicationItem.Title.Text] = syndicationItem.Summary.Text;
+                            if (syndicationItem.Content == null) continue;
+                            m_feedData[syndicationItem.Title.Text] = (syndicationItem.Content as TextSyndicationContent)?.Text;
                         }
                     }
                 }
