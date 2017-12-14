@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fritz.ConfigurationBuilders
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{B8AC4719-F65A-4AF6-ABFB-F625DC34B4DB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{B9E81DC5-9ADD-4918-9CC7-4B07D9795C7E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{114E81D3-EC81-415F-AFFA-65B7472C5F34}"
 	ProjectSection(SolutionItems) = preProject
 		Fritz.ConfigurationBuilders.nuspec = Fritz.ConfigurationBuilders.nuspec
 	EndProjectSection
@@ -20,6 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples-rss", "samples\Samp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Web", "samples\Samples.Web\Samples.Web.csproj", "{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}"
 EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -55,6 +55,7 @@
     <Compile Include="Ini\GreedyWithIniSections.cs" />
     <Compile Include="Ini\Initialize.cs" />
     <Compile Include="Ini\Simple.cs" />
+    <Compile Include="Ini\StrictMergedSectionNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
