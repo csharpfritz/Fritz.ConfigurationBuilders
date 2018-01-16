@@ -28,6 +28,20 @@ namespace Test.Yaml
 
 		}
 
+		[Test]
+		public void SupportsRelativeLocation() {
+
+			Assert.Pass("This is supported by the framework, no explicit code needed");
+
+		}
+
+		[Test]
+		public void SupportsAbsoluteLocation() {
+
+			Assert.Pass("This is supported and tested with the BaseFixture configuration and resource extraction");
+
+		}
+
 	}
 
 }

@@ -76,7 +76,7 @@ namespace Fritz.ConfigurationBuilders
 				.Where(n => n.NodeType == YamlNodeType.Mapping)
 				.Cast<YamlMappingNode>();
 
-			string foundValue = string.Empty;
+			var foundValue = string.Empty;
 			foreach (var entry in mappingNodes)
 			{
 
