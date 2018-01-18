@@ -54,6 +54,9 @@
     <EmbeddedResource Include="simple2.yml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="section.yml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Fritz.ConfigurationBuilders\Fritz.ConfigurationBuilders.csproj">

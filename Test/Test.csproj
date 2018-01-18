@@ -65,6 +65,7 @@
     <Compile Include="Yaml\Greedy.cs" />
     <Compile Include="Yaml\RequiredFields.cs" />
     <Compile Include="Yaml\Simple.cs" />
+    <Compile Include="Yaml\WhenSectionConfigured.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Ini\simple.ini" />
@@ -72,6 +73,7 @@
     <EmbeddedResource Include="Ini\manyAppSettings.ini" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Yaml\simple.yml" />
+    <EmbeddedResource Include="Yaml\sections.yml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

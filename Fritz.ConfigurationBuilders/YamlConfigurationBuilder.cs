@@ -15,9 +15,19 @@ namespace Fritz.ConfigurationBuilders
 	{
 
 		public const string locationTag = "location";
-		private YamlDocument YamlDoc;
+		public const string optionalTag = "optional";
+		public const string sectionTag = "section";
+
+		private YamlDocument YamlDoc = null;
 
 		public string Location { get; private set; }
+
+		/// <summary>
+		/// Is the file required?  If not, fail silently.  Defaults to FALSE
+		/// </summary>
+		public bool Optional { get; private set; } = false;
+
+		public string Section { get; private set; } = "";
 
 		public override void Initialize(string name, NameValueCollection config)
 		{
@@ -25,17 +35,31 @@ namespace Fritz.ConfigurationBuilders
 			base.Initialize(name, config);
 
 			this.Location = config[locationTag];
+			if (bool.TryParse(config[optionalTag], out var optValue)) {
 
-			if (string.IsNullOrEmpty(this.Location))
+				this.Optional = optValue;
+
+			} 
+
+			// Fail quickly if the file presence is required
+			if (!Optional && string.IsNullOrEmpty(this.Location))
 			{
+
 				throw new ArgumentNullException(nameof(locationTag),
 					$"Missing required location attribute on {nameof(YamlConfigurationBuilder)}");
+
+			} else if (Optional && string.IsNullOrEmpty(this.Location)) {
+
+				return;
+
 			}
+
+			Section = config[sectionTag];
 
 			using (var sr = new StreamReader(Location))
 			{
-				var parser = new YamlStream();
-				parser.Load(sr);
+				var parser = new YamlStream(); 
+				parser.Load(sr); 
 				YamlDoc = parser.Documents[0];
 			}
 
@@ -44,35 +68,46 @@ namespace Fritz.ConfigurationBuilders
 		public override ICollection<KeyValuePair<string, string>> GetAllValues(string prefix)
 		{
 
-			var matchingNode = YamlDoc.RootNode.AllNodes.Skip(1).First();
-			var mappingNodes = YamlDoc.RootNode.AllNodes
-				.Where(n => n.NodeType == YamlNodeType.Mapping)
-				.Cast<YamlMappingNode>();
+			// Fail quickly if there is no YAML Doc
+			if (YamlDoc == null) return new KeyValuePair<string, string>[] { };
 
-			var outList = new List<KeyValuePair<string, string>>();
-			foreach (var entry in mappingNodes)
-			{
+			var topNode = YamlDoc.RootNode as YamlMappingNode;
 
-				foreach (var mapNode in entry)
-				{
-
-					outList.Add(new KeyValuePair<string, string>(
-						((YamlScalarNode)mapNode.Key).Value,
-						(((YamlScalarNode)mapNode.Value).Value)));
-
-				}
-
-
+			if (!string.IsNullOrEmpty(Section)) {
+				topNode = (topNode as YamlMappingNode).Children
+					.FirstOrDefault(n => n.Key is YamlScalarNode && ((YamlScalarNode)n.Key).Value == Section).Value as YamlMappingNode;
 			}
 
-			return outList;
+			return topNode.Children.Select(c => new KeyValuePair<string, string>(
+			(c.Key as YamlScalarNode).Value,
+			(c.Value as YamlScalarNode).Value
+			)).ToList();
+			
 		}
 
 		public override string GetValue(string key)
 		{
 
-			var matchingNode = YamlDoc.RootNode.AllNodes.Skip(1).First();
-			var mappingNodes = YamlDoc.RootNode.AllNodes
+			// Fail quickly if there is no YAML Doc
+			if (YamlDoc == null) return "";
+
+			if (!string.IsNullOrEmpty(Section))
+			{
+
+				return GetValueFromSection(key, Section);
+
+			}
+
+			return GetValueFromKeyValuePair(key);
+
+		}
+
+		private string GetValueFromKeyValuePair(string key, YamlNode topMostNode = null)
+		{
+
+			topMostNode = topMostNode ?? YamlDoc.RootNode;
+
+			var mappingNodes = topMostNode.AllNodes
 				.Where(n => n.NodeType == YamlNodeType.Mapping)
 				.Cast<YamlMappingNode>();
 
@@ -83,17 +118,21 @@ namespace Fritz.ConfigurationBuilders
 				var foundPair = entry.FirstOrDefault(mapNode => ((YamlScalarNode)mapNode.Key).Value == key);
 				foundValue = ((YamlScalarNode)foundPair.Value).Value;
 
-
-				//foreach (var mapNode in entry)
-				//{
-				//	Console.Out.WriteLine(((YamlScalarNode)mapNode.Key).Value);
-				//	Console.Out.WriteLine(((YamlScalarNode)mapNode.Value).Value);
-				//}
-
 			}
 
 			return foundValue;
+		}
 
+		private string GetValueFromSection(string key, string section)
+		{
+
+			var rootNode = (YamlMappingNode)YamlDoc.RootNode;
+
+			var sectionNode = rootNode.Children
+				.FirstOrDefault(n => n.Key is YamlScalarNode && ((YamlScalarNode)n.Key).Value == section).Value;
+
+			return GetValueFromKeyValuePair(key, sectionNode);
+			
 		}
 	}
 }

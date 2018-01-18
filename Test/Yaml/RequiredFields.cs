@@ -28,6 +28,23 @@ namespace Test.Yaml
 
 		}
 
+		[Test()]
+		public void MissingLocationWhenOptionalAttributeShouldNotThrowException()
+		{
+
+			// arrange
+			var appSettings = new AppSettingsSection();
+			var coll = new NameValueCollection() {
+				{YamlConfigurationBuilder.optionalTag, "true"}
+			};
+			var sut = new YamlConfigurationBuilder();
+
+			// act - assert
+			sut.Initialize("test", coll);
+
+		}
+
+
 		[Test]
 		public void SupportsRelativeLocation() {
 

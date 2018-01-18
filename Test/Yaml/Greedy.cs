@@ -31,7 +31,7 @@ namespace Test.Yaml
 			Assert.AreEqual(2, appSettings.Settings.Count, "Did not add more add nodes to appSettings");
 
 			// Check for the other three settings
-			for (int i = 1; i < 3; i++)
+			for (var i = 1; i < 3; i++)
 			{
 				Assert.IsNotNull(appSettings.Settings[$"setting{i}"], $"Missing setting{i}");
 			}
