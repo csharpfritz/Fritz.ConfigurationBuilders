@@ -14,6 +14,7 @@ NuGet PreRelease: [![NuGet Pre Release](https://img.shields.io/nuget/vpre/Fritz.
 This project contains ConfigurationBuilders for your application to be able to consume and work with:
 
 *  INI Files
+*  RSS feeds
 
 You can add this library to your project and start consuming files and configuration data from these sources using the .NET Framework's standard `System.Configuration.ConfigurationManager` interface.
 
