@@ -11,7 +11,8 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A collection of useful ConfigurationBuilders for .NET Frameworks</description>
         <summary>A collection of useful ConfigurationBuilders for .NET Frameworks</summary>
-        <releaseNotes>0.4 - Added YamlConfigurationBuilder
+        <releaseNotes>
+        0.4 - Added YamlConfigurationBuilder
         0.3 - Added RssConfigurationBuilder
         0.2 - Initial Release, INI file support</releaseNotes>
         <copyright>Copyright 2017 Jeffrey T. Fritz</copyright>
