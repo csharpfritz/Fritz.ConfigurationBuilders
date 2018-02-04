@@ -1,12 +1,11 @@
-﻿using Humanizer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sample.Ini
+namespace Samples_Yaml
 {
 	class Program
 	{
@@ -15,7 +14,7 @@ namespace Sample.Ini
 
 			var keys = ConfigurationManager.AppSettings.AllKeys;
 
-			Console.WriteLine($"Here are my current {"AppSettings".ToQuantity(keys.Length)}:");
+			Console.WriteLine($"Here are my current {keys.Length}: AppSettings");
 
 			foreach (var item in keys)
 			{

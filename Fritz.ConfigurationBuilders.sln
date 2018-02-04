@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fritz.ConfigurationBuilders", "Fritz.ConfigurationBuilders\Fritz.ConfigurationBuilders.csproj", "{8D521ABC-F019-4B36-99A8-3E2C431A5F6E}"
 EndProject
@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{114E81D3-EC81-415F-AFFA-65B7472C5F34}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		Fritz.ConfigurationBuilders.nuspec = Fritz.ConfigurationBuilders.nuspec
 	EndProjectSection
 EndProject
@@ -18,9 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample-Ini", "samples\sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples-rss", "samples\Samples-rss\Samples-rss.csproj", "{EFA3093B-C503-4802-A965-D63B1D6DD473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.Web", "samples\Samples.Web\Samples.Web.csproj", "{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples.Web", "samples\Samples.Web\Samples.Web.csproj", "{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}"
 EndProject
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples-Yaml", "samples\Samples-Yaml\Samples-Yaml.csproj", "{80665BD1-A27C-4ADF-8780-C4C05F803622}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80665BD1-A27C-4ADF-8780-C4C05F803622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80665BD1-A27C-4ADF-8780-C4C05F803622}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80665BD1-A27C-4ADF-8780-C4C05F803622}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80665BD1-A27C-4ADF-8780-C4C05F803622}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +61,7 @@ Global
 		{235109B9-A8AE-4830-BC56-ECDE7F925DC2} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
 		{EFA3093B-C503-4802-A965-D63B1D6DD473} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
 		{4C504FFB-D81F-43CD-9B4B-69F3E333D92F} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
+		{80665BD1-A27C-4ADF-8780-C4C05F803622} = {FC2B849C-98AC-41DF-B5B7-47900203C0B8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1AF6F2D-5DC7-4F40-97DA-6474E5E85E3A}
