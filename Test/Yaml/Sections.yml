@@ -1,0 +1,7 @@
+﻿---
+appSettings:
+  setting1: value1
+  setting2: value2
+connectionStrings:
+  db1: value1
+  db2: value2
