@@ -1,46 +1,25 @@
 ﻿using NUnit.Framework;
 using System.IO;
 using System.Reflection;
+using Test;
 
 namespace Test.Ini
 {
-	public abstract class BaseIniFixture
+	public abstract class BaseIniFixture : BaseFixture
 	{
 
-		protected string iniFileLocation { get; private set; }
+		protected string iniFileLocation { get { return configFileLocation; } }
+
+		protected override string GetConfigFilename()
+		{
+			return GetIniFilename();
+		}
 
 		protected abstract string GetIniFilename();
 
-		protected virtual void OneTimeSetup() { }
-		protected virtual void OneTimeTeardown() { }
-
-
-		[OneTimeSetUp]
-		public void Setup()
+		protected override string GetFolder()
 		{
-
-			iniFileLocation = Path.GetTempFileName();
-			var thisIniFile = GetIniFilename();
-
-			using (var resource = Assembly.GetExecutingAssembly().GetManifestResourceStream($"Test.Ini.{thisIniFile}"))
-			{
-				using (var file = new FileStream(iniFileLocation, FileMode.Create, FileAccess.Write))
-				{
-					resource.CopyTo(file);
-				}
-			}
-
-			OneTimeSetup();
-
-		}
-
-		[OneTimeTearDown]
-		public void Teardown()
-		{
-			File.Delete(iniFileLocation);
-
-			OneTimeTeardown();
-
+			return "Ini";
 		}
 
 	}
