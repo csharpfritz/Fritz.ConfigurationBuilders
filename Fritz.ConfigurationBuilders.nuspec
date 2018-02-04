@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
         <id>Fritz.ConfigurationBuilders</id>
-        <version>0.3.0-preview</version>
+        <version>0.4.0-preview</version>
         <title>Fritz.ConfigurationBuilders</title>
         <authors>Jeffrey T. Fritz</authors>
         <owners>csharpfritz</owners>
@@ -11,12 +11,19 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A collection of useful ConfigurationBuilders for .NET Frameworks</description>
         <summary>A collection of useful ConfigurationBuilders for .NET Frameworks</summary>
-        <releaseNotes>
+        <releaseNotes>0.4 - Added YamlConfigurationBuilder
         0.3 - Added RssConfigurationBuilder
-        0.2 - Initial Release, INI file support
-        </releaseNotes>
+        0.2 - Initial Release, INI file support</releaseNotes>
         <copyright>Copyright 2017 Jeffrey T. Fritz</copyright>
         <language>en-US</language>
+        <dependencies>
+            <group targetFramework=".NETFramework4.7.1">
+                <dependency id="ini-parser" version="2.5.2" />
+                <dependency id="YamlDotNet" version="4.3.0" />
+            </group>
+        </dependencies>
     </metadata>
-    <files />
+    <files>
+        <file src="Fritz.ConfigurationBuilders\bin\Release\Fritz.ConfigurationBuilders.dll" target="lib\net471\Fritz.ConfigurationBuilders.dll" />
+    </files>
 </package>
