@@ -15,6 +15,7 @@ This project contains ConfigurationBuilders for your application to be able to c
 
 *  INI Files
 *  RSS feeds
+*  YAML Files
 
 You can add this library to your project and start consuming files and configuration data from these sources using the .NET Framework's standard `System.Configuration.ConfigurationManager` interface.
 
